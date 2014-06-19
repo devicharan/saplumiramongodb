@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+<link rel="stylesheet" type="text/css" href="styling.css">
+<title></title>
+
+<!--TO debug SAPUI5 in JAVAFX uncomment the script  -->
+<!-- 
+<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+-->
+<script id='sap-ui-bootstrap' src='sap-ui-custom.js'
+	data-sap-ui-theme='sap_goldenreflection' data-sap-ui-libs='sap.ui.commons'>
+	
+</script>
+<script src='PlaceHolderTextField.js'></script>
+
+
+</head>
+<body class='sapUiBody'>
+	<div id='content' style='background-color: #f2f2f2;'></div>
+
+	<script>
+		var oMainLayout = new sap.ui.commons.layout.VerticalLayout({
+			width : "100%"
+		}).addStyleClass("mainPanel");
+		var oHeaderLayout = new sap.ui.commons.layout.MatrixLayout({
+			width : "100%",
+			layoutFixed : true,
+			columns : 3,
+			widths : [ '5%', '80%', '15%' ]
+		}).addStyleClass("headerLayout");
+		var that = this;
+		var app = window.App;
+
+		var header = new sap.ui.commons.Label({
+			text : "New Dataset"
+		}).addStyleClass("header");
+		var headerIcon = new sap.ui.commons.Label({
+			text : "",
+			icon : "dataset_32.png"
+		});
+		var closeButton = new sap.ui.commons.Label({
+			text : "",
+			icon : "CrossMark_Up.png"
+		}).addStyleClass("closeButton");
+		closeButton.attachBrowserEvent("click", function(e) {
+			app.kill();
+		}, true);
+		oHeaderLayout.createRow(headerIcon, header, closeButton);
+		var oMainPanelLayout = new sap.ui.commons.layout.MatrixLayout({
+			columns : 2,
+			widths : [ '25%', '75%' ]
+		}).addStyleClass("credentialsLayout");
+		oMainLayout.addContent(oHeaderLayout);
+		var connectionStatus = new sap.ui.commons.Label({
+			text : "Enter Mongo DataBase Info"
+		}).addStyleClass("connectionStatus AllLabels");
+		oMainPanelLayout.createRow(connectionStatus, "");
+
+		this.oUserNameTF = new PlaceHolderTextField({
+			width : "30%"
+		}).addStyleClass("marginTop");
+		this.oUserNameTF.setPlaceholder("Username");
+		
+		var oUsernameLbl = new sap.ui.commons.Label({
+			text : "UserName"
+		}).addStyleClass("AllLabels marginTop");
+		oMainPanelLayout.createRow(oUsernameLbl, this.oUserNameTF);
+
+		this.oPasswordTF = new sap.ui.commons.PasswordField({
+			width : "30%"
+		}).addStyleClass("marginTop");
+		var oPaswwordLbl = new sap.ui.commons.Label({
+			text : "Password"
+		}).addStyleClass("AllLabels marginTop");
+
+		oMainPanelLayout.createRow(oPaswwordLbl, this.oPasswordTF);
+		//oMainPanelLayout.createRow("",savePassword);
+		this.oPortTF = new PlaceHolderTextField({
+			width : "30%"
+		}).addStyleClass("marginTop");
+		this.oPortTF.setPlaceholder("27017");
+		
+		var oPortLbl = new sap.ui.commons.Label({
+			text : "Port"
+		}).addStyleClass("AllLabels marginTop");
+		oMainPanelLayout.createRow(oPortLbl, this.oPortTF);
+
+		this.oDBNameTF = new PlaceHolderTextField({
+			width : "30%"
+		}).addStyleClass("marginTop");
+		this.oDBNameTF.setPlaceholder("MongoWebpageDB");
+		var oDBNameLbl = new sap.ui.commons.Label({
+			text : "DBName"
+		}).addStyleClass("AllLabels marginTop");
+		oMainPanelLayout.createRow(oDBNameLbl, this.oDBNameTF);
+
+		this.oCollectionNameTF = new PlaceHolderTextField({
+			width : "30%"
+		}).addStyleClass("marginTop");
+		this.oCollectionNameTF.setPlaceholder("webpage");
+		
+		var oCollectionNameLbl = new sap.ui.commons.Label({
+			text : "Collection"
+		}).addStyleClass("AllLabels marginTop");
+		oMainPanelLayout.createRow(oCollectionNameLbl, this.oCollectionNameTF);
+
+		this.oHostNameTF = new PlaceHolderTextField({
+			width : "30%"
+		}).addStyleClass("marginTop");
+		this.oHostNameTF.setPlaceholder("localhost");
+		
+		var oHostNameLbl = new sap.ui.commons.Label({
+			text : "HostName"
+		}).addStyleClass("AllLabels marginTop");
+		oMainPanelLayout.createRow(oHostNameLbl, this.oHostNameTF);
+		applyButton = new sap.ui.commons.Button({
+			text : "FetchData",
+			enabled : true,//TODO: set the value based on availability of MRU
+			press : function() {
+				app.setInputParam(that.oUserNameTF.getValue(), that.oPortTF
+						.getValue(), that.oDBNameTF.getValue(),
+						that.oCollectionNameTF.getValue(), that.oHostNameTF
+								.getValue())
+			}
+		}).addStyleClass("applyButton AllLabels");
+		applyButton.setIcon(" ");
+		var oConnectBtnRow = new sap.ui.commons.layout.MatrixLayoutRow();
+
+		var oConnectBtnCell = new sap.ui.commons.layout.MatrixLayoutCell({
+			colSpan : 2,
+			hAlign : sap.ui.commons.layout.HAlign.Right
+		});
+		var vHanaButtons = new sap.ui.commons.layout.VerticalLayout()
+				.addStyleClass("applyButton");
+		vHanaButtons.addContent(applyButton);
+		var mButtonLayout = new sap.ui.commons.layout.MatrixLayout({
+			layoutFixed : true,
+			columns : 2,
+			width : "100%",
+			widths : [ "40%", "60%" ]
+		}).addStyleClass("connectbuttonlayout");
+		mButtonLayout.createRow("", applyButton);
+		oMainLayout.addContent(oMainPanelLayout);
+		oMainLayout.addContent(mButtonLayout);
+		oMainLayout.placeAt('content');
+	</script>
+</body>
+</html>

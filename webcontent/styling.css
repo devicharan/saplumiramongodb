@@ -1,0 +1,61 @@
+.connectionStatus{
+	font-weight:bold;
+	max-width:100%;
+	width:200px;
+}
+
+.applyButton .sapUiBtnS{
+	margin-left: 695px;
+outline: none;
+text-align: center;
+min-width: 80px;
+height: 30px;
+font-weight: bold;
+font-size: 12px;
+padding: 5px 15px !important;
+width: auto;
+}
+
+.mainPanel{
+	background-color: #ffffff !important;
+	padding : 0 0 0 0 !important;
+	height:100%
+}
+
+.connectbuttonlayout{
+margin-top:20px;
+}
+
+.headerLayout{
+	background-color: #ffffff !important;
+	border-bottom:1px solid black;
+	height:63px;
+	margin-bottom: 5px;
+
+}
+.header{
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: rgb(51, 51, 51);
+	font-size: 24px;
+}
+
+.AllLabels{
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 12px;
+}
+
+.closeButton{
+	float:right;
+}
+
+.credentialsLayout > tbody > tr{
+	margin-top:10px;
+}
+
+.marginTop{
+	margin-top:10px;
+}
+
+.checkBox > input{
+	padding-top:6px;
+}
